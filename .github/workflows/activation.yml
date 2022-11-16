@@ -1,0 +1,18 @@
+name: Obtener licencia 🔐
+
+on: workflow_dispatch
+
+jobs:
+  requestManualActivationFile:
+    name: Solicitar archivo de activación manual 🔑
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: game-ci/unity-request-activation-file@v2
+        id: getManualLicenseFile
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Manual Activation File
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
